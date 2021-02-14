@@ -4,19 +4,18 @@
 namespace App\Controller\Api;
 
 use App\Repository\GastoRepository;
-use FOS\RestBundle\Controller\AbstractFOSRestController;
-use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+class GastoApiController{
 
 
-
-class GastoApiController extends AbstractFOSRestController{
     /**
-     * @Rest\Get(path="/gastos")
-     * @Rest\View(serializerGroups={"gasto"}, serializerEnableMaxDepthChecks=true)
+     * @Route("/gastos", name="gastos_api", methods={"GET", "HEAD"} )
      */
-    public function getActions(GastoRepository $gastoRepository)
-    {
-        return $gastoRepository->findAll();
+    public function getGastos(Request $request, GastoRepository $gastoRepository){
+        $gastos = $gastoRepository->findAll();
+        return new JsonResponse($gastos, 200);
     }
 
 }
