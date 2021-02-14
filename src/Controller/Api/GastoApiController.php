@@ -1,38 +1,30 @@
 <?php
 
+
 namespace App\Controller\Api;
 
-use App\Entity\Gasto;
 use App\Repository\GastoRepository;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
+use FOS\RestBundle\Controller\Annotations as Rest;
 
-class GastoApiController extends AbstractController{
-     
+
+
+class GastoApiController extends AbstractFOSRestController{
     /**
-     * @Route("api/gastos", name="gastos_list", methods={"GET", "Head"} )
+     * @Rest\Get(path="/gastos")
+     * @Rest\View(serializerGroups={"gasto"}, serializerEnableMaxDepthChecks=true)
      */
-    public function list(Request $request, GastoRepository $gastoRepository){
-       echo('algo');
-           
+    public function getActions(GastoRepository $gastoRepository)
+    {
+        return $gastoRepository->findAll();
     }
-    /** 
-     * @Route("/api/createGasto", name="create_gasto", methods={"GET", "Head"} )
-     */
-    public function createGasto(Request $request, EntityManagerInterface $em ){
-        $gasto = new Gasto();
-        $gasto->setTitle('Gasto de los chinos');
-        $em->persist($gasto); // controla este objecto de la clase gasto
-        $em->flush(); // todo los objetos que hayan sido persistido los mete a la base de datos
-        return new JsonResponse(
-        [
-        'Title' => $gasto->getTitle(),
-        'Id' => $gasto->getId(),
-        ], 200);
-    }
+
 }
+
+
+
+
+
+
+
 ?>
