@@ -1,0 +1,6 @@
+App\Entity\Gasto:
+    attributes:
+        id:
+            groups: ['gasto']
+        title:
+            groups: ['gasto']
