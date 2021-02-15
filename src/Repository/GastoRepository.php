@@ -47,4 +47,13 @@ class GastoRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function getGastosByUserId($userId){
+        $conn = $this->getEntityManager()->getConnection();
+        $query = "
+            SELECT *FROM gasto 
+            WHERE gasto.id = $userId";
+        $stmt = $conn->prepare($query);
+        $stmt->execute(['array' => $userId]);
+        return $stmt->fetchAll();
+    }
 }

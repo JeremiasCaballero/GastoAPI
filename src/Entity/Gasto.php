@@ -15,12 +15,12 @@ class Gasto
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    public $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    public $title;
+    private $title;
 
     public function getId(): ?int
     {

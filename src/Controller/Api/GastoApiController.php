@@ -11,10 +11,10 @@ class GastoApiController{
 
 
     /**
-     * @Route("/gastos", name="gastos_api", methods={"GET", "HEAD"} )
+     * @Route("/gastos/{id}", name="gastos_api", methods={"GET", "HEAD"} )
      */
-    public function getGastos(Request $request, GastoRepository $gastoRepository){
-        $gastos = $gastoRepository->findAll();
+    public function getGastosByUser(GastoRepository $gastoRepository, int $id){
+        $gastos = $gastoRepository->getGastosByUserId($id);
         return new JsonResponse($gastos, 200);
     }
 
