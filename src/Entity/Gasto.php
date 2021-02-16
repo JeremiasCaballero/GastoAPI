@@ -34,7 +34,7 @@ class Gasto
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="gasto")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="gasto")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
