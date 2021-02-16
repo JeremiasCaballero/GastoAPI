@@ -1,2 +1,4 @@
 # GastoAPI
-https://github.com/lexik/LexikJWTAuthenticationBundle
+## Getting started
+ $ composer install 
+
